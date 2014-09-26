@@ -51,12 +51,17 @@ public abstract class Suma {
     	while(!operacionExitosa){
     	try{	
     	
-    	System.out.println("$%#SUMA DE NUMEROS ENTEROS #%$\n"+
+    	
+    	System.out.println("$%#SUMA DE NUMEROS NATURALES #%$\n"+
     			"Introduzca el primer sumador: ");
     	setPrimerSumador(getEscaner().nextInt());
     	
     	System.out.println("Introduzca el segundo sumador: ");
     	setSegundoSumador(getEscaner().nextInt());
+    	if(getPrimerSumador()< 0 ||getSegundoSumador() <0){
+    		throw new ExcepcionNegativo("Error: ingreso numeros negativos. \n");
+    	}
+    	
     	System.out.println("Resultado: " + sumar() + "\n\n");
     	operacionExitosa= true;}
     	catch (InputMismatchException e){
@@ -66,6 +71,8 @@ public abstract class Suma {
     							+ "Intentelo de nuevo por favor. \n");
     		
     		getEscaner().nextLine();}
+    	catch(ExcepcionNegativo e){System.out.println(e.getMessage() + "Solo se permiten positivos. Intente de nuevo: \n");}
+    	
     	finally{
     		
     		System.out.println("Operacion realizada con exito? "+ operacionExitosa+ "\n");
