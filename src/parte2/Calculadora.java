@@ -2,14 +2,23 @@ package parte2;
 
 import java.awt.EventQueue;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JToggleButton;
+import javax.swing.JSeparator;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class Calculadora {
 
@@ -35,6 +44,7 @@ public class Calculadora {
 	private JButton btnRaiz;
 	private JButton buttonDivision;
 	private JButton buttonResta;
+	static ButtonGroup grupo= new ButtonGroup();
 	protected String texto;
 	
 
@@ -341,16 +351,20 @@ ButtonNum4 = new JButton("4");
         frame.getContentPane().add(buttonIgual);
         
         JRadioButton rdbtnN = new JRadioButton("N");
+        rdbtnN.setSelected(true);
         rdbtnN.setBounds(40, 81, 46, 23);
         frame.getContentPane().add(rdbtnN);
+        grupo.add(rdbtnN);
         
         JRadioButton rdbtnZ = new JRadioButton("Z");
         rdbtnZ.setBounds(109, 81, 46, 23);
         frame.getContentPane().add(rdbtnZ);
+        grupo.add(rdbtnZ);
         
         JRadioButton rdbtnQ = new JRadioButton("Q");
         rdbtnQ.setBounds(178, 81, 46, 23);
         frame.getContentPane().add(rdbtnQ);
+        grupo.add(rdbtnQ);
         
         buttonSeleccionarTipo = new JButton("\u2190");
         buttonSeleccionarTipo.addActionListener(new ActionListener() {
@@ -369,5 +383,10 @@ ButtonNum4 = new JButton("4");
         textFieldRespuesta.setBounds(0, 0, 343, 74);
         frame.getContentPane().add(textFieldRespuesta);
         textFieldRespuesta.setColumns(10);
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        panel.setBounds(10, 144, 333, 139);
+        frame.getContentPane().add(panel);
     }
 }
