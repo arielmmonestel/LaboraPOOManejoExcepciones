@@ -3,6 +3,7 @@ package parte2;
 import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -18,6 +19,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JSeparator;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 
 public class Calculadora {
@@ -46,6 +48,9 @@ public class Calculadora {
 	private JButton buttonResta;
 	static ButtonGroup grupo= new ButtonGroup();
 	protected String texto;
+	private JRadioButton rdbtnN;
+	private JRadioButton rdbtnZ;
+	private JRadioButton rdbtnQ;
 	
 
 	/**
@@ -311,6 +316,17 @@ ButtonNum4 = new JButton("4");
             texto = textFieldRespuesta.getText();
             
                 textFieldRespuesta.setText(texto+ "+");
+                
+                if(rdbtnN.isSelected()){
+                	System.out.println("N");	
+                }
+                if(rdbtnZ.isSelected()){
+                System.out.println("Z");
+                }
+                if(rdbtnQ.isSelected()){
+                System.out.println("Q");
+                }
+              
             }
             
         });
@@ -347,21 +363,25 @@ ButtonNum4 = new JButton("4");
         frame.getContentPane().add(btnIn);
         
         buttonIgual = new JButton("=");
+        buttonIgual.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         buttonIgual.setBounds(268, 220, 59, 57);
         frame.getContentPane().add(buttonIgual);
         
-        JRadioButton rdbtnN = new JRadioButton("N");
+        rdbtnN = new JRadioButton("N");
         rdbtnN.setSelected(true);
         rdbtnN.setBounds(40, 81, 46, 23);
         frame.getContentPane().add(rdbtnN);
         grupo.add(rdbtnN);
         
-        JRadioButton rdbtnZ = new JRadioButton("Z");
+        rdbtnZ = new JRadioButton("Z");
         rdbtnZ.setBounds(109, 81, 46, 23);
         frame.getContentPane().add(rdbtnZ);
         grupo.add(rdbtnZ);
         
-        JRadioButton rdbtnQ = new JRadioButton("Q");
+        rdbtnQ = new JRadioButton("Q");
         rdbtnQ.setBounds(178, 81, 46, 23);
         frame.getContentPane().add(rdbtnQ);
         grupo.add(rdbtnQ);
