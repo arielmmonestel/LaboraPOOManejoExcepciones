@@ -32,6 +32,10 @@ public class Division extends Operacion{
 	private String divEnteraNatural(){
 		float d1 = Float.parseFloat(getPrimerDato());
 		float d2 = Float.parseFloat(getSegundoDato());
+		if(d2 == 0){
+			JOptionPane.showMessageDialog(null, "Division entre 0.", "ERROR: Entradas invalidas",0);
+			return "ERROR";
+		}
 		if( (d1 + d2) %1 != 0){
 			JOptionPane.showMessageDialog(null, "Al menos una entrada es racional.", "ERROR: Entradas invalidas",0);
 			return "ERROR";

@@ -34,7 +34,7 @@ public abstract class Operacion {
 	
 	protected boolean entradasNaturales(){
 		if(getPrimerDato().charAt(0) == '-' || getSegundoDato().charAt(0) == '-'){
-			JOptionPane.showMessageDialog(null, "Entradas (s) negativa (s).  No en naturales", "ERROR: Entradas invalidas",0);
+			JOptionPane.showMessageDialog(null, "Entrada (s) negativa (s).  No en naturales", "ERROR: Entradas invalidas",0);
 			return false;
 		}
 		return true;

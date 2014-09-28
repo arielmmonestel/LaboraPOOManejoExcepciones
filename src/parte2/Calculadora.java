@@ -50,7 +50,7 @@ public class Calculadora {
 	private JButton buttonDivision;
 	private JButton buttonResta;
 	static ButtonGroup grupo= new ButtonGroup();
-	protected String texto;
+	protected String texto ="";
 	private JRadioButton rdbtnN;
 	private JRadioButton rdbtnZ;
 	private JRadioButton rdbtnQ;
@@ -337,14 +337,19 @@ public class Calculadora {
 	        			case '-':
 	        				operacion = new Resta();
 	        				break;
+	        			case '+':
+	        				operacion = new Suma();
+	        				break;
 	        		}
-	        		if(operator != '='){
-	        			Operacion.setSegundoDato(textFieldRespuesta.getText());
+	        		if( operator != 0){
+		        		if(operator != '=' ){
+		        			Operacion.setSegundoDato(textFieldRespuesta.getText());
+		        		}
+		        		operacion.realizarOperacion(getConjunto());
+		        		textFieldRespuesta.setText(Operacion.getResultado());
+		        		Operacion.setPrimerDato(textFieldRespuesta.getText());
+		        		operator = '=';
 	        		}
-	        		operacion.realizarOperacion(getConjunto());
-	        		textFieldRespuesta.setText(Multiplicacion.getResultado());
-	        		Operacion.setPrimerDato(textFieldRespuesta.getText());
-	        		operator = '=';
         		}
         	}
         });
