@@ -339,9 +339,11 @@ public class Calculadora {
 	        			case '-':
 	        				operacion = new Resta();
 	        				break;
-	        			case '+':
+	        			/*case '+':
 	        				operacion = new Suma();
-	        				break;
+	        				break;*/
+	        			case '^':
+	        				operacion = new Potencia();
 	        		}
 	        		if( operator != 0){
 		        		if(operator != '=' ){
