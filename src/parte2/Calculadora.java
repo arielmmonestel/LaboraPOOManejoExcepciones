@@ -25,6 +25,7 @@ import java.awt.Color;
 public class Calculadora {
 	public enum Conjunto {NATURALES, ENTEROS, RACIONALES};
 	private char operator;
+	private Operacion operacion;
 
 	private JFrame frame;
 	private JTextField textFieldRespuesta;
@@ -104,7 +105,7 @@ public class Calculadora {
 		buttonNum7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				texto = textFieldRespuesta.getText();
-				if (texto.equals("0")){
+				if (texto.equals("0") || texto.equals("ERROR") || texto.equals("ERROR")){
 					textFieldRespuesta.setText("7");
 				}
 				else{
@@ -119,7 +120,7 @@ public class Calculadora {
 		buttonNum8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				texto = textFieldRespuesta.getText();
-				if (texto.equals("0")){
+				if (texto.equals("0") || texto.equals("ERROR")){
 					textFieldRespuesta.setText("8");
 				}
 				else{
@@ -134,7 +135,7 @@ public class Calculadora {
 		buttonNum9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 texto = textFieldRespuesta.getText();
-				if (texto.equals("0")){
+				if (texto.equals("0") || texto.equals("ERROR")){
 					textFieldRespuesta.setText("9");
 				}
 				else{
@@ -170,7 +171,7 @@ public class Calculadora {
         ButtonNum4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
+                if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("4");
                 }
                 else{
@@ -185,7 +186,7 @@ public class Calculadora {
         buttonNum5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
+                if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("5");
                 }
                 else{
@@ -200,7 +201,7 @@ public class Calculadora {
         buttonNum6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
+                if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("6");
                 }
                 else{
@@ -237,7 +238,7 @@ public class Calculadora {
         buttonNum3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
+                if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("3");
                 }
                 else{
@@ -252,7 +253,7 @@ public class Calculadora {
         buttonNum2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
+                if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("2");
                 }
                 else{
@@ -267,7 +268,7 @@ public class Calculadora {
         buttonNum1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
+                if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("1");
                 }
                 else{
@@ -325,21 +326,26 @@ public class Calculadora {
         buttonIgual = new JButton("=");
         buttonIgual.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Operacion operacion = null;
-        		switch (operator){
-        			case '*':
-	        			operacion = new Multiplicacion();
-	        			break;
-        			case '/':
-        				operacion = new Division();
-        				break;
-        			case '-':
-        				operacion = new Resta();
-        				break;
+        		if(!texto.equals("ERROR")){
+	        		switch (operator){
+	        			case '*':
+		        			operacion = new Multiplicacion();
+		        			break;
+	        			case '/':
+	        				operacion = new Division();
+	        				break;
+	        			case '-':
+	        				operacion = new Resta();
+	        				break;
+	        		}
+	        		if(operator != '='){
+	        			Operacion.setSegundoDato(textFieldRespuesta.getText());
+	        		}
+	        		operacion.realizarOperacion(getConjunto());
+	        		textFieldRespuesta.setText(Multiplicacion.getResultado());
+	        		Operacion.setPrimerDato(textFieldRespuesta.getText());
+	        		operator = '=';
         		}
-        		Operacion.setSegundoDato(textFieldRespuesta.getText());
-        		operacion.realizarOperacion(getConjunto());
-        		textFieldRespuesta.setText(Multiplicacion.getResultado());
         	}
         });
         buttonIgual.setBounds(268, 220, 59, 57);

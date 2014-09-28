@@ -1,12 +1,14 @@
 package parte2;
 
+import javax.swing.JOptionPane;
+
 import parte2.Calculadora.Conjunto;
 
 public abstract class Operacion {
 	
-	private static String primerDato= "";
-	private static String SegundoDato= "";
-	private static String resultado = "";
+	private static String primerDato= "0";
+	private static String SegundoDato= "0";
+	private static String resultado = "0";
 	
 	
 	public static String getPrimerDato() {
@@ -30,7 +32,13 @@ public abstract class Operacion {
 	
 	public abstract void realizarOperacion(Conjunto conjunto);
 	
-	
+	protected boolean entradasNaturales(){
+		if(getPrimerDato().charAt(0) == '-' || getSegundoDato().charAt(0) == '-'){
+			JOptionPane.showMessageDialog(null, "Entradas (s) negativa (s).  No en naturales", "ERROR: Entradas invalidas",0);
+			return false;
+		}
+		return true;
+	}
 	/*public static void main(String[] args){
 	
 		Operacion op1 = new Resta();

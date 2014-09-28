@@ -7,14 +7,12 @@ import parte2.Calculadora.Conjunto;
 public class Multiplicacion extends Operacion {
 	@Override
 	public void realizarOperacion(Conjunto conjunto) {
-		String res = "";
+		String res = "ERROR";
 		
 		switch (conjunto){
 			case NATURALES:
-				res = multiEnteraNatural();
-				if(res.charAt(0) == '-'){
-					JOptionPane.showMessageDialog(null, "Resultado negativo.  No en naturales", "ERROR: Resultado negativo",0);
-					res = "ERROR.  Resultado negativo.";
+				if(entradasNaturales()){
+					res = multiEnteraNatural();
 				}
 				break;
 			case ENTEROS:
