@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class Calculadora {
 	public enum Conjunto {NATURALES, ENTEROS, RACIONALES};
@@ -84,6 +85,7 @@ public class Calculadora {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./imgs/calc-icon.png"));
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 359, 323);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
