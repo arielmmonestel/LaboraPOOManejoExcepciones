@@ -125,10 +125,12 @@ public class Calculadora {
 				if (texto.equals("0") || texto.equals("ERROR")){
 					textFieldRespuesta.setText("8");
 				}
-				else{
+				if (texto.equals("ln "))/////////////////////
+	                	Operacion.setPrimerDato("8");////////////////
+				//else{
 					textFieldRespuesta.setText(texto+ "8");
 				}
-			}
+			//}
 		});
 		buttonNum8.setBounds(77, 152, 46, 23);
 		frame.getContentPane().add(buttonNum8);
@@ -151,13 +153,10 @@ public class Calculadora {
 		btnRaiz = new JButton("\u221A");
 		btnRaiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				Operacion.setPrimerDato( textFieldRespuesta.getText() );
-				if(!texto.contains("\u221A")){
-					operator = '\u221A';
-				}
-				textFieldRespuesta.setText("\u221A");				
-			
+            	operator = 'l';
+            	textFieldRespuesta.setText("0");
+				
 			}
 		});
 		btnRaiz.setBounds(199, 152, 59, 23);
@@ -167,9 +166,7 @@ public class Calculadora {
 		buttonExpo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Operacion.setPrimerDato( textFieldRespuesta.getText() );
-				if(!texto.contains("^")){
-					operator = '^';
-				}
+				operator = '^';
 				textFieldRespuesta.setText("0");				
 			}
 		});
@@ -281,9 +278,11 @@ public class Calculadora {
                 if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("1");
                 }
-                else{
+                if (texto.equals("ln "))//////////////////////
+                	Operacion.setPrimerDato("1");//////////////////////
+               // else{
                     textFieldRespuesta.setText(texto+ "1");
-                }
+               // }
             }
         });
         buttonNum1.setBounds(21, 220, 46, 23);
@@ -324,10 +323,13 @@ public class Calculadora {
         button.setBounds(77, 254, 46, 23);
         frame.getContentPane().add(button);
         
-        btnIn = new JButton("Log");
+        btnIn = new JButton("Ln");
         btnIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	operator = 'L';
+            	//Operacion.setPrimerDato( textFieldRespuesta.getText() );
+            	operator = 'l';
+            	textFieldRespuesta.setText("ln ");
+            	
             }
         });
         btnIn.setBounds(133, 254, 46, 23);
@@ -347,16 +349,15 @@ public class Calculadora {
 	        			case '-':
 	        				operacion = new Resta();
 	        				break;
-	        			/*case '+':
+	        			case '+':
 	        				operacion = new Suma();
-	        				break;*/
-	        			case '^':
-	        				operacion = new Potencia();
-	        			
-	        			case '\u221A':
-	        				operacion = new Raiz();
-	        				
-	        			
+	        				break;
+	        			case 'l':
+	        				operacion = new Ln();
+	        				break;
+	        			case 'r':
+	        				//operacion = new Raiz();
+	        				break;	
 	        		}
 	        		if( operator != 0){
 		        		if(operator != '=' ){
