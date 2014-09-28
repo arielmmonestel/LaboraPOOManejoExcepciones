@@ -323,10 +323,13 @@ public class Calculadora {
         button.setBounds(77, 254, 46, 23);
         frame.getContentPane().add(button);
         
-        btnIn = new JButton("Ln");
+        btnIn = new JButton("Log");
+        btnIn.setFont(new Font("Tahoma", Font.PLAIN, 8));
         btnIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	//Operacion.setPrimerDato( textFieldRespuesta.getText() );
+            	Operacion.setPrimerDato( textFieldRespuesta.getText() );
+            	
+            	System.out.println(Operacion.getPrimerDato());
             	operator = 'l';
             	textFieldRespuesta.setText("ln ");
             	
@@ -358,6 +361,8 @@ public class Calculadora {
 	        			case 'r':
 	        				//operacion = new Raiz();
 	        				break;	
+	        			case '^':
+	        				operacion = new Potencia();
 	        		}
 	        		if( operator != 0){
 		        		if(operator != '=' ){
