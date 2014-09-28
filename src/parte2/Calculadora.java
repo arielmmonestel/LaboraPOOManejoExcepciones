@@ -97,7 +97,8 @@ public class Calculadora {
 				texto = textFieldRespuesta.getText();
 				
 					textFieldRespuesta.setText(texto+ "0");
-				
+				if (texto.equals("ln "))/////////////////////
+	               	Operacion.setPrimerDato("8");////////////////
 			}
 		});
 		buttonNum0.setBounds(21, 254, 46, 23);
@@ -124,13 +125,13 @@ public class Calculadora {
 				texto = textFieldRespuesta.getText();
 				if (texto.equals("0") || texto.equals("ERROR")){
 					textFieldRespuesta.setText("8");
-				}
-				if (texto.equals("ln "))/////////////////////
-	                	Operacion.setPrimerDato("8");////////////////
-				//else{
+				}	
+				else{
 					textFieldRespuesta.setText(texto+ "8");
 				}
-			//}
+				if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("8");////////////////
+			}
 		});
 		buttonNum8.setBounds(77, 152, 46, 23);
 		frame.getContentPane().add(buttonNum8);
@@ -145,6 +146,8 @@ public class Calculadora {
 				else{
 					textFieldRespuesta.setText(texto+ "9");
 				}
+				if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("9");////////////////
 			}
 		});
 		buttonNum9.setBounds(133, 152, 46, 23);
@@ -184,6 +187,8 @@ public class Calculadora {
                 else{
                     textFieldRespuesta.setText(texto+ "4");
                 }
+                if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("4");////////////////
             }
         });
         ButtonNum4.setBounds(21, 186, 46, 23);
@@ -199,6 +204,8 @@ public class Calculadora {
                 else{
                     textFieldRespuesta.setText(texto+ "5");
                 }
+                if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("5");////////////////
             }
         });
         buttonNum5.setBounds(77, 186, 46, 23);
@@ -214,6 +221,8 @@ public class Calculadora {
                 else{
                     textFieldRespuesta.setText(texto+ "6");
                 }
+                if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("6");////////////////
             }
         });
         buttonNum6.setBounds(133, 186, 46, 23);
@@ -251,6 +260,8 @@ public class Calculadora {
                 else{
                     textFieldRespuesta.setText(texto+ "3");
                 }
+                if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("3");////////////////
             }
         });
         buttonNum3.setBounds(133, 220, 46, 23);
@@ -266,6 +277,8 @@ public class Calculadora {
                 else{
                     textFieldRespuesta.setText(texto+ "2");
                 }
+                if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("2");////////////////
             }
         });
         buttonNum2.setBounds(77, 220, 46, 23);
@@ -278,11 +291,12 @@ public class Calculadora {
                 if (texto.equals("0") || texto.equals("ERROR")){
                     textFieldRespuesta.setText("1");
                 }
-                if (texto.equals("ln "))//////////////////////
-                	Operacion.setPrimerDato("1");//////////////////////
-               // else{
+                else{
                     textFieldRespuesta.setText(texto+ "1");
-               // }
+                }
+                if (texto.equals("ln "))/////////////////////
+                	Operacion.setPrimerDato("1");////////////////
+                
             }
         });
         buttonNum1.setBounds(21, 220, 46, 23);
