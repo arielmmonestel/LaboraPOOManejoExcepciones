@@ -23,6 +23,8 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class Calculadora {
+	public enum Conjunto {NATURALES, ENTEROS, RACIONALES};
+	private char operator;
 
 	private JFrame frame;
 	private JTextField textFieldRespuesta;
@@ -84,7 +86,7 @@ public class Calculadora {
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 359, 323);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null); 
+		frame.getContentPane().setLayout(null);
 		
 		buttonNum0 = new JButton("0");
 		buttonNum0.addActionListener(new ActionListener() {
@@ -146,15 +148,7 @@ public class Calculadora {
 		btnRaiz = new JButton("\u221A");
 		btnRaiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				texto = textFieldRespuesta.getText();
-				if (texto.equals("0")){
-					textFieldRespuesta.setText(texto);
-				}
-				else{
-					textFieldRespuesta.setText(texto+ "√");
-					
-					
-				}
+				
 			}
 		});
 		btnRaiz.setBounds(199, 152, 59, 23);
@@ -163,21 +157,16 @@ public class Calculadora {
 		buttonExpo = new JButton("^");
 		buttonExpo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				texto = textFieldRespuesta.getText();
-				if (texto.equals("0")){
-					textFieldRespuesta.setText(texto);
-				}
-				else{
-					textFieldRespuesta.setText(texto+ "^");
-				}
-				
+				Operacion.setPrimerDato( textFieldRespuesta.getText() );
+				operator = '^';
+				textFieldRespuesta.setText("0");				
 			}
 		});
 		buttonExpo.setBounds(268, 152, 59, 23);
 		frame.getContentPane().add(buttonExpo);
 		
 
-ButtonNum4 = new JButton("4");
+		ButtonNum4 = new JButton("4");
         ButtonNum4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
@@ -225,15 +214,9 @@ ButtonNum4 = new JButton("4");
         buttonDivision = new JButton("/");
         buttonDivision.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
-                    textFieldRespuesta.setText(texto);
-                }
-                else{
-                    textFieldRespuesta.setText(texto+ "/");
-                    
-                    
-                }
+            	Operacion.setPrimerDato( textFieldRespuesta.getText() );
+            	operator = '/';
+            	textFieldRespuesta.setText("0");
             }
         });
         buttonDivision.setBounds(199, 186, 59, 23);
@@ -242,12 +225,9 @@ ButtonNum4 = new JButton("4");
         buttonMulti = new JButton("*");
         buttonMulti.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                texto = textFieldRespuesta.getText();
-                
-                    textFieldRespuesta.setText(texto+ "*");
-                
-                
-                
+            	Operacion.setPrimerDato( textFieldRespuesta.getText() );
+            	operator = '*';
+            	textFieldRespuesta.setText("0");
             }
         });
         buttonMulti.setBounds(268, 186, 59, 23);
@@ -301,11 +281,10 @@ ButtonNum4 = new JButton("4");
         buttonResta = new JButton("-");
         buttonResta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                texto = textFieldRespuesta.getText();
-                
-                    textFieldRespuesta.setText(texto+ "-");
-                
-            }
+            	Operacion.setPrimerDato( textFieldRespuesta.getText() );
+            	operator = '-';
+            	textFieldRespuesta.setText("0");
+           }
         });
         buttonResta.setBounds(199, 220, 59, 23);
         frame.getContentPane().add(buttonResta);
@@ -313,20 +292,9 @@ ButtonNum4 = new JButton("4");
         buttonSuma = new JButton("+");
         buttonSuma.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            texto = textFieldRespuesta.getText();
-            
-                textFieldRespuesta.setText(texto+ "+");
-                
-                if(rdbtnN.isSelected()){
-                	System.out.println("N");	
-                }
-                if(rdbtnZ.isSelected()){
-                System.out.println("Z");
-                }
-                if(rdbtnQ.isSelected()){
-                System.out.println("Q");
-                }
-              
+            	Operacion.setPrimerDato( textFieldRespuesta.getText() );
+            	operator = '+';
+            	textFieldRespuesta.setText("0");
             }
             
         });
@@ -337,26 +305,18 @@ ButtonNum4 = new JButton("4");
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 texto = textFieldRespuesta.getText();
-                
+                if(!texto.contains(".")){//Hay a lo sumo un punto
                     textFieldRespuesta.setText(texto+ ".");
-                    
-                
+                }                
             }
         });
         button.setBounds(77, 254, 46, 23);
         frame.getContentPane().add(button);
         
-        btnIn = new JButton("ln");
+        btnIn = new JButton("Log");
         btnIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                texto = textFieldRespuesta.getText();
-                if (texto.equals("0")){
-                    textFieldRespuesta.setText("Log");
-                }
-                else{
-                    textFieldRespuesta.setText(texto+ "Log");
-                }
-                
+            	operator = 'L';
             }
         });
         btnIn.setBounds(133, 254, 46, 23);
@@ -365,6 +325,21 @@ ButtonNum4 = new JButton("4");
         buttonIgual = new JButton("=");
         buttonIgual.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		Operacion operacion = null;
+        		switch (operator){
+        			case '*':
+	        			operacion = new Multiplicacion();
+	        			break;
+        			case '/':
+        				operacion = new Division();
+        				break;
+        			case '-':
+        				operacion = new Resta();
+        				break;
+        		}
+        		Operacion.setSegundoDato(textFieldRespuesta.getText());
+        		operacion.realizarOperacion(getConjunto());
+        		textFieldRespuesta.setText(Multiplicacion.getResultado());
         	}
         });
         buttonIgual.setBounds(268, 220, 59, 57);
@@ -409,4 +384,16 @@ ButtonNum4 = new JButton("4");
         panel.setBounds(10, 144, 333, 139);
         frame.getContentPane().add(panel);
     }
+
+	public Conjunto getConjunto(){
+		if(rdbtnN.isSelected()){
+        	return Conjunto.NATURALES;	
+        }
+		else if(rdbtnZ.isSelected()){
+        	return Conjunto.ENTEROS;
+        }
+		else{
+			return Conjunto.RACIONALES;
+		}
+	}
 }
