@@ -152,6 +152,12 @@ public class Calculadora {
 		btnRaiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				Operacion.setPrimerDato( textFieldRespuesta.getText() );
+				if(!texto.contains("\u221A")){
+					operator = '\u221A';
+				}
+				textFieldRespuesta.setText("\u221A");				
+			
 			}
 		});
 		btnRaiz.setBounds(199, 152, 59, 23);
@@ -161,7 +167,9 @@ public class Calculadora {
 		buttonExpo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Operacion.setPrimerDato( textFieldRespuesta.getText() );
-				operator = '^';
+				if(!texto.contains("^")){
+					operator = '^';
+				}
 				textFieldRespuesta.setText("0");				
 			}
 		});
@@ -344,6 +352,11 @@ public class Calculadora {
 	        				break;*/
 	        			case '^':
 	        				operacion = new Potencia();
+	        			
+	        			case '\u221A':
+	        				operacion = new Raiz();
+	        				
+	        			
 	        		}
 	        		if( operator != 0){
 		        		if(operator != '=' ){
